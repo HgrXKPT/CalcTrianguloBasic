@@ -1,52 +1,28 @@
 ﻿using System;
+using ConsoleApp1;
 class Program {
 
-    static void Main(string[] args) {
-        double a, b, c, TrianguloA, TrianguloB;
-            (a, b, c) = PegarInfoTriangulo(1);
-            TrianguloA = AreaTriangulo(a,b,c);
 
-            (a, b, c) = PegarInfoTriangulo(2);
-            TrianguloB = AreaTriangulo(a,b,c);
+    static void Main(string[] args) {
+        Triangulo x, y;
+        x = new Triangulo();
+        y = new Triangulo();
+
+        double a, b, c, TrianguloA, TrianguloB;
+            (x.A, x.B, x.C) = Triangulo.PegarInfoTriangulo(1);
+            TrianguloA = Triangulo.AreaTriangulo(x.A,x.B,x.C);
+
+            (y.A, y.B, y.C) = Triangulo.PegarInfoTriangulo(2);
+            TrianguloB = Triangulo.AreaTriangulo(y.A,y.B,y.C);
         
 
         Console.WriteLine($"Aréa do Triangulo A:{TrianguloA}, Triangulo B:{TrianguloB}");
 
-        Console.WriteLine($"O maior triangulo é {MaiorTriangulo(TrianguloA, TrianguloB)}");
+        Console.WriteLine($"O maior triangulo é {Triangulo.MaiorTriangulo(TrianguloA, TrianguloB)}");
 
     }
 
-    static (double, double, double) PegarInfoTriangulo(int numeroTriangulo) {
- 
-            double a = 0, b = 0, c = 0;
-
-
-            Console.WriteLine($"Entre com as medidas do {numeroTriangulo}º Triangulo");
-
-            try {
-                a = double.Parse(Console.ReadLine());
-                b = double.Parse(Console.ReadLine());
-                c = double.Parse(Console.ReadLine());
-            } catch(Exception ex) {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-        return (a, b, c); 
-    }
-
-        static double MaiorTriangulo(double a,double b) {
-        return a > b ? a : b;
-    }
-
-
-    static double AreaTriangulo(double a,double b,double c) {
-        if(a + b > c && a + c > b && b + c > a) {
-            double P = (a + b + c) / 2;
-            return Math.Sqrt(P * (P - a) * (P - b) * (P - c));
-        } else {
-            Console.WriteLine("Erro: As medidas fornecidas não formam um triângulo válido.");
-            return double.NaN;
-        }
-    }
+    
 
 
 
